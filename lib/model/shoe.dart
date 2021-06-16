@@ -52,13 +52,6 @@ var shoePopulars = [
 
 var shoeNewests = [
   Shoe(
-    name: 'Adidas Trae Young 1',
-    description:
-        "Superstar Trae Young’s first signature shoe with the Three Stripes — the Adidas Trae Young 1 — made its appearance in Young’s maiden playoff run with the Hawks in May 2021.",
-    price: 2300000,
-    imageUrl: 'images/6.jpg',
-  ),
-  Shoe(
     name: 'New Balance KAWHI TWO',
     description:
         "New Balance has decided to go all-in with Kawhi Leonard, following his previous signature efforts (the popular OMN1S and quieter KAWHI) with the understated KAWHI TWO shoe, a low-top silhouette with aggressive traction and full-length cushioning.",
@@ -85,13 +78,6 @@ var shoeNewests = [
         "The Li-Ning CJ 1 is CJ McCollum’s first signature shoe with the rapidly expanding Chinese shoe brand. The hightop CJ1 is Li-Ning’s first new signature sneaker since DWade’s Way of Wade line.",
     price: 3300000,
     imageUrl: 'images/10.jpg',
-  ),
-  Shoe(
-    name: 'Adidas Trae Young 1',
-    description:
-        "Superstar Trae Young’s first signature shoe with the Three Stripes — the Adidas Trae Young 1 — made its appearance in Young’s maiden playoff run with the Hawks in May 2021.",
-    price: 2300000,
-    imageUrl: 'images/6.jpg',
   ),
   Shoe(
     name: 'New Balance KAWHI TWO',

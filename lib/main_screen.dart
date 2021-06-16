@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './model/shoe.dart';
+import './detail_screen.dart';
+import './Model/shoe.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -30,7 +31,7 @@ class Navbar extends StatelessWidget {
       child: Container(
         color: Colors.teal[600],
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
               "ShoeStock",
@@ -53,27 +54,26 @@ class HeaderHorizontal extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12),
+        padding: EdgeInsets.only(
+          top: 36,
+          right: 18,
+          left: 18,
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              margin: EdgeInsets.only(top: 36),
-              child: Text(
-                "Popular Shoes",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            Text(
+              "Popular Shoes",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
-              child: Text(
-                "More than thousand pairs sold every weeks.",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w300,
-                ),
+            Text(
+              "More than thousand pairs sold every weeks.",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w300,
               ),
             ),
           ],
@@ -95,30 +95,43 @@ class ShoeHorizontal extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
               final Shoe shoe = shoePopulars[index];
-              return Container(
-                width: 200,
-                height: 150,
-                child: Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Image.asset(
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return DetailScreen(shoe: shoe);
+                    }),
+                  );
+                },
+                child: Container(
+                  width: 200,
+                  height: 150,
+                  child: Card(
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Image.asset(
                             shoe.imageUrl,
                           ),
-                        ),
-                        Text(
-                          shoe.name,
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
+                          Text(
+                            shoe.name,
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text('Rp. ' + shoe.price.toString()),
-                      ],
+                          Text(
+                            'Rp. ' + shoe.price.toString(),
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -137,31 +150,28 @@ class HeaderVertical extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 1,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            padding: EdgeInsets.only(
-              top: 30,
-              left: 12,
-              right: 12,
-            ),
-            child: Text(
+      child: Container(
+        padding: EdgeInsets.only(
+          top: 24,
+          left: 18,
+          right: 18,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
               "Latest Shoes",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: Text(
+            Text(
               "New shoes give you new looks.",
               style: TextStyle(fontSize: 18),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -178,45 +188,55 @@ class ShoeVertical extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               final Shoe shoe = shoeNewests[index];
-              return Card(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Image.asset(
-                        shoe.imageUrl,
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 24,
-                          horizontal: 12,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              shoe.name,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              'Rp. ' + shoe.price.toString(),
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
-                          ],
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return DetailScreen(shoe: shoe);
+                    }),
+                  );
+                },
+                child: Card(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child: Image.asset(
+                          shoe.imageUrl,
                         ),
                       ),
-                    )
-                  ],
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 24,
+                            horizontal: 12,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                shoe.name,
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Rp. ' + shoe.price.toString(),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
             },
