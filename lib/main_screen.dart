@@ -94,34 +94,37 @@ class ShoeHorizontal extends StatelessWidget {
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemBuilder: (BuildContext context, int index) {
-              final Shoe shoe = shoeList[index];
+              final Shoe shoe = shoePopulars[index];
               return Container(
-                width: 150,
+                width: 200,
                 height: 150,
                 child: Card(
-                  child: Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            shoe.name,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Image.asset(
+                            shoe.imageUrl,
                           ),
-                          Text('Rp. ' + shoe.price.toString()),
-                        ],
-                      ),
+                        ),
+                        Text(
+                          shoe.name,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text('Rp. ' + shoe.price.toString()),
+                      ],
                     ),
                   ),
                 ),
               );
             },
-            itemCount: shoeList.length,
+            itemCount: shoePopulars.length,
           ),
         ),
       ),
@@ -170,21 +173,19 @@ class ShoeVertical extends StatelessWidget {
     return Expanded(
       flex: 5,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12),
+        padding: EdgeInsets.only(bottom: 24, left: 12, right: 12),
         child: SizedBox(
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) {
-              final Shoe shoe = shoeList[index];
+              final Shoe shoe = shoeNewests[index];
               return Card(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Expanded(
                       flex: 1,
-                      child: Image.network(
+                      child: Image.asset(
                         shoe.imageUrl,
-                        height: 30,
-                        width: 30,
                       ),
                     ),
                     Expanded(
@@ -219,7 +220,7 @@ class ShoeVertical extends StatelessWidget {
                 ),
               );
             },
-            itemCount: shoeList.length,
+            itemCount: shoeNewests.length,
           ),
         ),
       ),
